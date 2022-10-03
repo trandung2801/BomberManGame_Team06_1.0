@@ -1,0 +1,63 @@
+package GameMonster;
+
+import graphics.Sprite;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
+public abstract class Entity {
+    // tọa độ X tính từ góc trái trên trong Canvas
+    protected int x;
+    // tọa độ Y tính từ góc trái trên trong Canvas
+    protected int y;
+    protected Image img;
+
+    public Entity (int xUnit, int yUnit, Image img){
+        x = xUnit * Sprite.SCALED_SIZE;
+        y = yUnit * Sprite.SCALED_SIZE;
+    }
+
+    public void render (GraphicsContext gc){
+        gc.drawImage(img, x, y);
+    }
+
+    public abstract void update();
+
+    public int getXUnit() {
+        return (x + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+    }
+
+    public int getYUnit() {
+        return (y + Sprite.DEFAULT_SIZE) / Sprite.SCALED_SIZE;
+    }
+
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
+    public Image getImg() {
+        return img;
+    }
+
+    public void removeFromGame() {
+        this.setImg(null);
+    }
+
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+
+}
