@@ -1,4 +1,4 @@
 package GameInterfaceController;
 
-public class StarGameInterface {
+public class StartGameInterface {
 }
