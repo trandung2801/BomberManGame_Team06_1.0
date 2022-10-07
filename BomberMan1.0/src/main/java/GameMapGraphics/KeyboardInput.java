@@ -27,7 +27,7 @@ public class KeyboardInput {
         if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.D) {
             right = true;
         }
-        if (e.getCode() == KeyCode.P) {
+        if (e.getCode() == KeyCode.TAB) {
             pause = true;
         }
         if (e.getCode() == KeyCode.SPACE) {
@@ -55,7 +55,7 @@ public class KeyboardInput {
         if (e.getCode() == KeyCode.RIGHT || e.getCode() == KeyCode.D) {
             right = false;
         }
-        if (e.getCode() == KeyCode.P) {
+        if (e.getCode() == KeyCode.TAB) {
             pause = false;
         }
         if (e.getCode() == KeyCode.SPACE) {

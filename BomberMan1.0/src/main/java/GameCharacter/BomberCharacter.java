@@ -78,7 +78,7 @@ public class BomberCharacter extends Character {
         bombUpdate();
         ifCollisionWithFlameOrEnemyOrItem();
 
-        input = BomberManGame.getCanvasGame().getInput();
+        input = BomberManGame.getGameBase().getInput();
 
         if (isStartDie()) {
             if (timeShowDeath-- > 0) {
@@ -280,7 +280,7 @@ public class BomberCharacter extends Character {
         }
 
         if (e instanceof Powerup powerup) {
-            new GameSound(GameSound.EAT_POWERUP_SOUND).play();
+            new GameSound(GameSound.EAT_POWERUP_SOUND).play_sound();
             switch (powerup.getId()) {
                 case "psi":
                     if (velocity < 3) { // velocity max = 3

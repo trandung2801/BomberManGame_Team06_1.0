@@ -1,5 +1,6 @@
 package Main;
 
+import GameMapGraphics.GameCanvas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +19,7 @@ public class BomberManGame extends Application {
     public static final int HEIGHT = 900;//Height screen
 
     private GraphicsContext gc;
-    private static CanvasGame canvas;
+    private static GameCanvas canvas;
 
     @Override
     public void start(Stage stage) throws IOException {
