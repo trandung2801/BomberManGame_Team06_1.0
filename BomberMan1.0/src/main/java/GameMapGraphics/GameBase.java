@@ -1,4 +1,4 @@
-package GameMapGraphics;
+package GameMapGraphics;  // class game
 
 import GameCharacter.BomberCharacter;
 import Main.BomberManGame;

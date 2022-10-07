@@ -11,7 +11,14 @@ public class GameSpriteSheet {
     public int size;
     protected int[] pixels;
 
-    public static final GameSpriteSheet tiles = new GameSpriteSheet("src/resources/textures/classic.png", 256);
+    public static final GameSpriteSheet tiles = new GameSpriteSheet("/main/resources/textures/classic.png", 256);
+    public static final GameSpriteSheet dragon = new GameSpriteSheet("/main/resources/textures/dragon.png", 64);
+    public static final GameSpriteSheet phoenix = new GameSpriteSheet("/main/resources/textures/Phoenix.png", 64);
+    public static final GameSpriteSheet fireMonster = new GameSpriteSheet("/main/resources/textures/fire.png", 48);
+    public static final GameSpriteSheet batMonster =
+            new GameSpriteSheet("/main/resources/textures/batmonster4.png", 64);
+    public static final GameSpriteSheet newtiles =
+            new GameSpriteSheet("/main/resources/textures/TilesMap.png", 96);
 
     public GameSpriteSheet(String path, int size) {
         this.path = path;

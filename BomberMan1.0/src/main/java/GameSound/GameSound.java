@@ -1,5 +1,6 @@
 package GameSound;
 
+import Main.BomberManGame;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.AudioSpectrumListener;
 
@@ -42,6 +43,25 @@ public class GameSound {
             e.printStackTrace();
             System.out.println("Sound.Sound()");
         }
+    }
+
+    public void play_sound() {
+        if (isRunning || BomberManGame.getMuted()) {
+            return;
+        }
+        clip.setFramePosition(0);
+        if (path.equals(GAME_SOUND) || path.equals(MENU_SOUND)) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-10.0f);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+        if (path.equals(EXPLOSION_SOUND)) {
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-20.0f);
+        }
+        clip.start();
+        isRunning = true;
+        status = SoundsStatusGame.PLAY;     // status ở đâu trong file gốc ??
     }
 
     public void stop_sound(){
