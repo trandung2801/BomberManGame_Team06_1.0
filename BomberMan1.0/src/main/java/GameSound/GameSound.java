@@ -13,16 +13,16 @@ import java.io.IOException;
 import Main.BomberManGame;
 
 public class GameSound {
-    public static final String GAME_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String TRANSFER_LEVEL_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String EAT_POWERUP_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String MENU_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String EXPLOSION_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String DEAD_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String LOSE_GAME_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String WIN_GAME_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String MOVING_SOUND = "src/resources/sounds/inGame.wav";
-    public static final String PLACE_BOMB_SOUND = "src/resources/sounds/inGame.wav";
+    public static final String GAME_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String TRANSFER_LEVEL_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String EAT_POWERUP_SOUND ="src/resources/sounds//gameOver.wav";
+    public static final String MENU_SOUND = "src/resources/sounds//Backgound.wav";
+    public static final String EXPLOSION_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String DEAD_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String LOSE_GAME_SOUND ="src/resources/sounds//gameOver.wav";
+    public static final String WIN_GAME_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String MOVING_SOUND = "src/resources/sounds//gameOver.wav";
+    public static final String PLACE_BOMB_SOUND = "src/resources/sounds//gameOver.wav";
 
     private String path;
     private boolean isRunning = false;

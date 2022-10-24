@@ -68,7 +68,7 @@ public class BomberManGame extends Application {
 
         stage.setResizable(false);
         stage.setTitle("Bomberman");
-        Image icon = new Image("./resources/textures/icon.png");
+        Image icon = new Image("src/resources/textures/icon.png");
         stage.getIcons().add(icon);
 
         // Create Scene
