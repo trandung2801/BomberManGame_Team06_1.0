@@ -13,7 +13,7 @@ public abstract class GameAnimationEntity extends GameEntity {
         super(xUnit, yUnit, img);
     }
 
-    protected void setAnimation() {
+    protected void animate() {
         if (animation > MAX_ANIMATE){
             animation = 0;
         } else {

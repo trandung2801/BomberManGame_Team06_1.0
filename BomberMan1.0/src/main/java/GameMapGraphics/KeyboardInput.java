@@ -10,6 +10,10 @@ public class KeyboardInput {
     public boolean right = false;
     public boolean skill = false;
     public boolean pause = false;
+    public boolean enter = false;
+    public boolean space = false;
+
+    public boolean backspace = false;
     public boolean release = false;
 
     public void KeyPressed(KeyEvent e) {
@@ -27,6 +31,15 @@ public class KeyboardInput {
         }
         if (e.getCode() == KeyCode.TAB) {
             pause = true;
+        }
+        if (e.getCode() == KeyCode.ENTER) {
+            enter = true;
+        }
+        if (e.getCode() == KeyCode.SPACE) {
+            space = true;
+        }
+        if (e.getCode() == KeyCode.BACK_SPACE) {
+            backspace = true;
         }
         release = false;
     }
@@ -46,6 +59,15 @@ public class KeyboardInput {
         }
         if (e.getCode() == KeyCode.TAB) {
             pause = false;
+        }
+        if (e.getCode() == KeyCode.SPACE) {
+            space = false;
+        }
+        if (e.getCode() == KeyCode.ENTER) {
+            enter = false;
+        }
+        if (e.getCode() == KeyCode.BACK_SPACE) {
+            backspace = false;
         }
         release = true;
     }

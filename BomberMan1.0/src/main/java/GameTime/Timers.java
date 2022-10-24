@@ -1,0 +1,73 @@
+package GameTime;
+
+import Main.BomberManGame;
+import GameMapGraphics.GameBase;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Timers {
+    private boolean isPlaying = false;
+    Timer timer = new Timer();
+    private int interval;
+    private static int delay = 1000; // 1s
+    private static final int PERIOD = 1000; // 1s
+
+    private int check;
+
+    /**
+     * Display time.
+     */
+    public void setTime() {
+        isPlaying = true;
+        // timer.cancel();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if (interval <= 1) {
+                    timer.cancel();
+                    if (check == BomberManGame.timeLiving) {
+                        GameBase.bomberman.setAlive(false);
+                    }
+                    BomberManGame.setLives(0);
+                    // System.out.println("gameover" + interval);
+                    isPlaying = false;
+                }
+                if (isPlaying) {
+                    --interval;
+                    // System.out.println(interval);
+                }
+            }
+        }, delay, PERIOD);
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlay(boolean play) {
+        isPlaying = play;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+        check = interval;
+        // timer.cancel();
+    }
+
+    public static int getDelay() {
+        return delay;
+    }
+
+    public static void setDelay(int newDelay) {
+        delay = newDelay;
+    }
+
+    public void setPeriod() {
+        timer.cancel();
+    }
+}

@@ -1,15 +1,27 @@
 package GameMonster;
 
+import GameBomb.Bomb;
+import GameCharacter.Bomber;
+import GameMapEntity.EntityObject.Brick;
+import GameMapEntity.EntityObject.Portal;
+import GameMapEntity.EntityObject.Wall;
 import GameMapEntity.GameAnimationEntity;
+import GameMapEntity.GameEntity;
+import GameMapGraphics.KeyboardInput;
+import GamePowerUpItems.Powerup;
 import GameSprite.GameSprite;
+import Main.BomberManGame;
 import javafx.scene.image.Image;
 
-public abstract class Monster extends GameAnimationEntity {
+import java.util.List;
+
+abstract public class Monster extends GameAnimationEntity {
     protected  int velocity = 1;
     protected boolean isAlive = true;
     protected int direction = 0;
 
-    //protected Bomber bomber = new Bomber(0, 0, new KeyboardInput());
+    // 0 up, 1 down, 2 left, 3 right
+    protected Bomber bomber = new Bomber(0, 0, new KeyboardInput());
     protected int timeDead = 40;
     protected int flameHit = 0;
 
@@ -22,10 +34,16 @@ public abstract class Monster extends GameAnimationEntity {
         super(xUnit, yUnit, img);
     }
 
-    /* public boolean canMove(int x, int y) {
-        int xUnit = (int) x / Sprite.SCALED_SIZE;
-        int yUnit = (int) y / Sprite.SCALED_SIZE;
-        Entity e = BombermanGame.getCanvasGame().getEntityInCoodinate(xUnit, yUnit);
+    /**
+     * Check if monster can move to coordinate [x,y].
+     *
+     * @return True if monster can go to [x,y] and false other wise
+     */
+
+     public boolean canMove(int x, int y) {
+        int xUnit = (int) x / GameSprite.SCALED_SIZE;
+        int yUnit = (int) y / GameSprite.SCALED_SIZE;
+        GameEntity e = BomberManGame.getGameCanvas().getEntityInCoodinate(xUnit, yUnit);
         if (this instanceof Kondoria && e instanceof Brick) {
             return true;
         }
@@ -33,15 +51,15 @@ public abstract class Monster extends GameAnimationEntity {
       return false;
     }
     return !(e instanceof Wall || e instanceof Brick || e instanceof Bomb || e instanceof Portal);
-    } */
+    }
 
-    /*public boolean recognizeBomb(int x, int y) {
-        int xUnit = (int) x / Sprite.SCALED_SIZE;
-        int yUnit = (int) y / Sprite.SCALED_SIZE;
-        Entity e = BombermanGame.getCanvasGame().getEntityInCoodinate(xUnit + 1, yUnit);
-        Entity e1 = BombermanGame.getCanvasGame().getEntityInCoodinate(xUnit - 1, yUnit);
-        Entity e2 = BombermanGame.getCanvasGame().getEntityInCoodinate(xUnit, yUnit + 1);
-        Entity e3 = BombermanGame.getCanvasGame().getEntityInCoodinate(xUnit, yUnit - 1);
+    public boolean recognizeBomb(int x, int y) {
+        int xUnit = (int) x / GameSprite.SCALED_SIZE;
+        int yUnit = (int) y / GameSprite.SCALED_SIZE;
+        GameEntity e = BomberManGame.getGameCanvas().getEntityInCoodinate(xUnit + 1, yUnit);
+        GameEntity e1 = BomberManGame.getGameCanvas().getEntityInCoodinate(xUnit - 1, yUnit);
+        GameEntity e2 = BomberManGame.getGameCanvas().getEntityInCoodinate(xUnit, yUnit + 1);
+        GameEntity e3 = BomberManGame.getGameCanvas().getEntityInCoodinate(xUnit, yUnit - 1);
         if (e instanceof Bomb) {
             return true;
         }
@@ -65,7 +83,7 @@ public abstract class Monster extends GameAnimationEntity {
         // System.out.println(flameHit);
         // }
         // enemy gap bat ky item auto se tang speed
-        Entity e = BombermanGame.getCanvasGame().getEntityInCoodinate(x, y);
+        GameEntity e = BomberManGame.getGameCanvas().getEntityInCoodinate(x, y);
         if (e instanceof Powerup) {
             // if (!(this instanceof Dragon)) {
             // setVelocity(velocity + 1);
@@ -73,6 +91,10 @@ public abstract class Monster extends GameAnimationEntity {
             e.setImg(null);
         }
     }
+
+    /**
+     * If collide with bomb then turn around.
+     */
     public void collideWithBomb() {
         List<Bomb> bombs = bomber.getBombList();
         for (Bomb b : bombs) {
@@ -85,9 +107,10 @@ public abstract class Monster extends GameAnimationEntity {
     public int getAnimate() {
         return animation;
     }
-    /*public void setBomber(Bomber bomber) {
+
+    public void setBomber(Bomber bomber) {
         this.bomber = bomber;
-    }*/
+    }
 
     public int getVelocity() {
         return velocity;

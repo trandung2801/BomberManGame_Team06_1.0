@@ -5,13 +5,14 @@ import GameSprite.GameSprite;
 import javafx.scene.image.Image;
 import java.awt.*;
 
-public class Wall extends GameEntity {
+public class Wall extends GameEntity{
 
-    private GameSprite[] WallSprite = {GameSprite.wall};
+    private GameSprite[] sprites = {GameSprite.wall1, GameSprite.wall2, GameSprite.wall3,GameSprite.wall4, GameSprite.wall5,
+            GameSprite.wall6, GameSprite.wall7};
 
-    public Wall(int x, int y, int gamemap){
+    public Wall(int x, int y, int level) {
         super(x, y, null);
-        img = WallSprite[gamemap].getFxImage();
+        img = sprites[level].getFxImage();
     }
 
     public Wall(int x, int y, Image image) {
@@ -19,7 +20,5 @@ public class Wall extends GameEntity {
     }
 
     @Override
-    public void update() {
-
-    }
+    public void update() {}
 }
