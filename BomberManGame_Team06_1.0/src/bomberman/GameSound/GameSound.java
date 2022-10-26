@@ -8,7 +8,7 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class GameSound {
-	
+	// path sound
 	public static String soundGame = "res/sounds/inLevel.wav";
 	public static String soundTransferLevel = "res/sounds/levelComplete.wav" ;
 	public static String soundEatingItem = "res/sounds/eatingItem.wav";

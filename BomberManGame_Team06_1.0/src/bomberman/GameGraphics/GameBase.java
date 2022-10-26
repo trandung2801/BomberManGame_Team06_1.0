@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class GameBase {
-    public static String[] paths = {"res/levels/Level1.txt", "res/levels/Level2.txt", "res/levels/Level3.txt",
+    public String[] paths = {"res/levels/Level1.txt", "res/levels/Level2.txt", "res/levels/Level3.txt",
     		"res/levels/Level4.txt", "res/levels/Level5.txt", "res/levels/Level6.txt", "res/levels/Level7.txt"};
     public int WIDTH, HEIGHT;
     public boolean pause = false;
@@ -28,8 +28,8 @@ public class GameBase {
     //list to render in canvas
     private List<Grass> grassList;
     private List<GameEntity> entityList; // list to check collision
-    private List<Bomb> bombs;
-    private List<Monster> enemyList;
+    private List<Bomb> bombList;
+    private List<Monster> monsterList;
 
     //bomber
     public static Bomber bomberman = new Bomber(1, 1, new KeyboardInput());
@@ -37,7 +37,7 @@ public class GameBase {
     private Bomber originBomber;
 
     //level
-    public GameMap level = new GameMap();
+    public GameMap gameMap = new GameMap();
     private int currentLevel = 1;
     private int timeShowTransferLevel = 150;
     private boolean TransferLevel = false;
@@ -47,7 +47,7 @@ public class GameBase {
 
     public static GameTimers timer = new GameTimers();
 
-    //sound game
+    //Game Sound
     public GameSound soundGame = new GameSound(GameSound.soundGame);
     public GameSound soundLoseGame = new GameSound(GameSound.soundLoseGame);
     public GameSound soundWinGame = new GameSound(GameSound.soundWinGame);
@@ -70,7 +70,7 @@ public class GameBase {
     }
 
     private void updateEnemy(Bomber bomberman) {
-        for (Monster e : enemyList) {
+        for (Monster e : monsterList) {
             e.setBomber(bomberman);
             if (e instanceof Oneal) {
                 ((Oneal) e).updateBomberForAI();
@@ -84,14 +84,14 @@ public class GameBase {
     public void createMap() {
         if (currentLevel > paths.length) return;
 
-        level.createMapLevel(paths[currentLevel - 1], currentLevel-1);
-        WIDTH = level.getW();
-        HEIGHT = level.getH();
+        gameMap.createMapLevel(paths[currentLevel - 1], currentLevel-1);
+        WIDTH = gameMap.getWidth();
+        HEIGHT = gameMap.getHeight();
 
-        this.setGrassList(level.getGrassList());
+        this.setGrassList(gameMap.getGrassList());
 
         //phuc hoi cac thuoc tinh bomber cua level truoc va set vi tri moi
-        originBomber = level.getBomber();
+        originBomber = gameMap.getBomber();
         if (currentLevel > 1) {
             bomberman.restoreBomber(bomberInPreLevel);
         }
@@ -99,8 +99,8 @@ public class GameBase {
         bomberman.setY(originBomber.getY());
         bomberman.setAlive(true);
 
-        entityList = level.getCollidableEntities();
-        enemyList = level.getEnemyList();
+        entityList = gameMap.getCollidableEntities();
+        monsterList = gameMap.getMonsterList();
         updateEnemy(bomberman);
 
         timer.setInterval(BomberManGame.timeLiving);
@@ -130,7 +130,7 @@ public class GameBase {
             bomberman.canPassFlame = false;
             if (!gameOver) {
                 BomberManGame.lives -= 1;
-                bomberman = new Bomber(1, 1, BomberManGame.canvas.getInput());
+                bomberman = new Bomber(1, 1, BomberManGame.gameCanvas.getInput());
             }
             bomberInPreLevel.restoreBomber(originBomber);
             this.createMap();
@@ -154,9 +154,9 @@ public class GameBase {
 
         bomberman.update();
 
-        for (GameEntity e : enemyList) {
+        for (GameEntity e : monsterList) {
             if (e.getImg() == null) {
-                enemyList.remove(e);
+                monsterList.remove(e);
                 break;
             } else {
                 e.update();
@@ -181,7 +181,7 @@ public class GameBase {
             }
         }
 
-        if (enemyList.size() == 0) {
+        if (monsterList.size() == 0) {
             bomberman.setKillAllEnemies((true));
         }
 
@@ -215,7 +215,7 @@ public class GameBase {
             grassList.forEach(g -> g.render(gc));
             entityList.forEach(e -> e.render(gc));
 
-            enemyList.forEach(e -> {
+            monsterList.forEach(e -> {
                 e.render(gc);
                 e.setBomber(bomberman);
                 if (e instanceof Oneal) ((Oneal) e).updateBomberForAI();
@@ -265,44 +265,19 @@ public class GameBase {
                 return e;
             }
         }
-        for (Monster e : enemyList) {
+        for (Monster e : monsterList) {
             if (e.getXUnit() == x && e.getYUnit() == y) {
                 return e;
             }
         }
-        bombs = bomberman.getBombList();
-        for (Bomb b : bombs) {
+        bombList = bomberman.getBombList();
+        for (Bomb b : bombList) {
             if (b.getXUnit() == x && b.getYUnit() == y) {
                 return b;
             }
         }
         return null;
     }
-
-    public void setGrassList(List<Grass> grassList) {
-        this.grassList = grassList;
-    }
-
-    public void addEntity(GameEntity e) {
-        entityList.add(e);
-    }
-
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
-    public void setTransferLevel(boolean transferLevel) {
-        TransferLevel = transferLevel;
-    }
-
-    public boolean isReturnMainMenu() {
-        return returnMainMenu;
-    }
-
-    public void setReturnMainMenu(boolean returnMainMenu) {
-        this.returnMainMenu = returnMainMenu;
-    }
-
 
     public void renderInfoOfCurrentLevel(GraphicsContext gc) {
         gc.setFill(Color.BLACK);
@@ -406,5 +381,30 @@ public class GameBase {
             soundLoseGame.resume();
         }
     }
+
+    public void setGrassList(List<Grass> grassList) {
+        this.grassList = grassList;
+    }
+
+    public void addEntity(GameEntity e) {
+        entityList.add(e);
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setTransferLevel(boolean transferLevel) {
+        TransferLevel = transferLevel;
+    }
+
+    public boolean isReturnMainMenu() {
+        return returnMainMenu;
+    }
+
+    public void setReturnMainMenu(boolean returnMainMenu) {
+        this.returnMainMenu = returnMainMenu;
+    }
+
 }
 

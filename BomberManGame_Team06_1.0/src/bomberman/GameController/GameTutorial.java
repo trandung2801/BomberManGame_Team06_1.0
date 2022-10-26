@@ -10,11 +10,11 @@ import bomberman.GameSprite.GameSprite;
 import java.io.FileInputStream;
 
 public class GameTutorial {
-    private KeyboardInput keyboard;
+    private KeyboardInput keyboardInput;
     private boolean returnMenu = false;
 
-    public GameTutorial(KeyboardInput keyboard) {
-        this.keyboard = keyboard;
+    public GameTutorial(KeyboardInput keyboardInput) {
+        this.keyboardInput = keyboardInput;
     }
 
     public void showTutorialGame(GraphicsContext gc) {
@@ -78,7 +78,7 @@ public class GameTutorial {
     }
 
     public void update() {
-        if (keyboard.back) {
+        if (keyboardInput.back) {
             returnMenu = true;
         }
     }

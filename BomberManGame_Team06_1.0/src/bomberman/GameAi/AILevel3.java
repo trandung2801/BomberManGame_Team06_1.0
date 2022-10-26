@@ -110,7 +110,7 @@ public class AILevel3 extends AI {
 	            x += 1;
 	            break;
     	}
-	    GameEntity en = BomberManGame.canvas.getEntityInCoodinate(x, y);
+	    GameEntity en = BomberManGame.gameCanvas.getEntityInCoodinate(x, y);
 	    if (en instanceof Brick && e instanceof Kondoria) return false;
 	    if (en instanceof Wall || en instanceof Brick || en instanceof Portal || en instanceof Bomb) {
 	        return true;

@@ -7,13 +7,13 @@ import javafx.scene.text.Font;
 import bomberman.Main.BomberManGame;
 
 public class PauseGame {
-    private KeyboardInput keyboard;
+    private KeyboardInput keyboardInput;
     private int selecting;
 
     public int finalSelected;
 
     public PauseGame(KeyboardInput kb) {
-        keyboard = kb;
+        keyboardInput = kb;
         selecting = 0;
         finalSelected = -1;
     }
@@ -48,14 +48,14 @@ public class PauseGame {
     }
 
     public void update() {
-        if (!keyboard.release && keyboard.down && selecting < 2) {
+        if (!keyboardInput.release && keyboardInput.down && selecting < 2) {
             selecting++;
-            keyboard.setRelease(true);
-        } else if (!keyboard.release && keyboard.up && selecting > 0) {
+            keyboardInput.setRelease(true);
+        } else if (!keyboardInput.release && keyboardInput.up && selecting > 0) {
             selecting--;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        if ((keyboard.enter || keyboard.space) && !keyboard.release) {
+        if ((keyboardInput.enter || keyboardInput.space) && !keyboardInput.release) {
             switch (selecting) {
                 case 0:
                     finalSelected = 1;
@@ -71,7 +71,7 @@ public class PauseGame {
             if (selecting == 2) {
                 selecting = 0; //reset selecting
             }
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
     }
 

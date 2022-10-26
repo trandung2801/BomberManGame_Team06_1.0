@@ -11,28 +11,28 @@ import java.net.URL;
  */
 public class GameSpriteSheet {
 
-	private String _path;
+	private String path;
 	public final int SIZE;
-	public int[] _pixels;
+	public int[] pixels;
 	public BufferedImage image;
 
 	public static GameSpriteSheet tiles = new GameSpriteSheet("/textures/classic.png", 256);
 	public static GameSpriteSheet dragon = new GameSpriteSheet("/textures/dragon.png", 64);
 	public static GameSpriteSheet tiles1 = new GameSpriteSheet("/textures/TilesMap.png", 96);
 	public GameSpriteSheet(String path, int size) {
-		_path = path;
+		this.path = path;
 		SIZE = size;
-		_pixels = new int[SIZE * SIZE];
+		pixels = new int[SIZE * SIZE];
 		load();
 	}
 	
 	private void load() {
 		try {
-			URL a = GameSpriteSheet.class.getResource(_path);
+			URL a = GameSpriteSheet.class.getResource(path);
 			image = ImageIO.read(a);
 			int w = image.getWidth();
 			int h = image.getHeight();
-			image.getRGB(0, 0, w, h, _pixels, 0, w);
+			image.getRGB(0, 0, w, h, pixels, 0, w);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(0);

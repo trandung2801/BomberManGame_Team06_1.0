@@ -10,13 +10,13 @@ public class GameSprite {
 	
 	public static final int DEFAULT_SIZE = 16;
 	public static final int SCALED_SIZE = DEFAULT_SIZE * 2;
-    private static final int TRANSPARENT_COLOR = 0xffff00ff;
+    private final int TRANSPARENT_COLOR = 0xffff00ff;
 	public final int SIZE;
 	private int _x, _y;
 	public int[] _pixels;
 	protected int _realWidth;
 	protected int _realHeight;
-	private GameSpriteSheet _sheet;
+	private GameSpriteSheet gameSpriteSheet;
 
 	/*
 	|--------------------------------------------------------------------------
@@ -244,7 +244,7 @@ public class GameSprite {
 		_pixels = new int[SIZE * SIZE];
 		_x = x * SIZE;
 		_y = y * SIZE;
-		_sheet = sheet;
+		gameSpriteSheet = sheet;
 		_realWidth = rw;
 		_realHeight = rh;
 		load();
@@ -265,7 +265,7 @@ public class GameSprite {
 	private void load() {
 		for (int y = 0; y < SIZE; y++) {
 			for (int x = 0; x < SIZE; x++) {
-				_pixels[x + y * SIZE] = _sheet._pixels[(x + _x) + (y + _y) * _sheet.SIZE];
+				_pixels[x + y * SIZE] = gameSpriteSheet.pixels[(x + _x) + (y + _y) * gameSpriteSheet.SIZE];
 			}
 		}
 	}

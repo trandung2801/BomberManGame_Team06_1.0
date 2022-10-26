@@ -16,31 +16,35 @@ import bomberman.GameSound.GameSound;
 
 public class BomberManGame extends Application {
 
-    //frame game
-    public static int WIDTH = 31;
-    public static int HEIGHT = 14;
+    //Game console
+    public static final int WIDTH = 31;
+    public static final int HEIGHT = 14;
+
+    //Game contructor
     public Group root;
     private GraphicsContext gc;
-    public static GameCanvas canvas;
-    public static Stage window;
+    public static GameCanvas gameCanvas;
+    public Stage windowStage;
+    public static boolean mute = false;
+
+    //Game controller
     public MenuGame menuGame;
     public PauseGame pauseGame;
-    public GameTutorial tutorialGame;
-
-    //thong so game
-    public static int timeLiving = 300;
-    public static int scores = 0;
-    public static int lives = 3;
+    public GameTutorial gameTutorial;
 
     public boolean showMenu = true;
-    public static boolean mute = false;
     public boolean showTutorial = false;
 
     public GameSound menuSound = new GameSound(GameSound.soundMenu);
 
+    //Game Status
+    public static int timeLiving = 300;
+    public static int scores = 0;
+    public static int lives = 3;
+
     @Override
     public void start(Stage stage) {
-        window = stage;
+        windowStage = stage;
         initGame();
 
         AnimationTimer timer = new AnimationTimer() {
@@ -59,19 +63,19 @@ public class BomberManGame extends Application {
                     handleSelection();
 
                 } else if (showTutorial) {
-                    tutorialGame.showTutorialGame(gc);
-                    tutorialGame.update();
-                    if (tutorialGame.isReturnMenu()) {
+                    gameTutorial.showTutorialGame(gc);
+                    gameTutorial.update();
+                    if (gameTutorial.isReturnMenu()) {
                         showMenu = true;
                         showTutorial = false;
-                        tutorialGame.setReturnMenu(false);
+                        gameTutorial.setReturnMenu(false);
                     }
-                } else if (canvas.getInput().pause == true) { //if pause
+                } else if (gameCanvas.getInput().pause == true) { //if pause
 
-                    canvas.getGame().timer.setPlay(false);
-                    if (!canvas.getGame().isPause()) {
-                        canvas.getGame().pauseSound();
-                        canvas.getGame().setPause(true);
+                    gameCanvas.getGame().timer.setPlay(false);
+                    if (!gameCanvas.getGame().isPause()) {
+                        gameCanvas.getGame().pauseSound();
+                        gameCanvas.getGame().setPause(true);
                     }
 
                     pauseGame.showPauseGame(gc);
@@ -79,22 +83,22 @@ public class BomberManGame extends Application {
 
                     //handle selections in pause game
                     if (pauseGame.getFinalSelected() == 2) { //return main menu
-                        canvas.getInput().pause = false;
+                        gameCanvas.getInput().pause = false;
                         showMenu = true;
                     } else if (pauseGame.getFinalSelected() == 1) { //if resume game
-                        canvas.getInput().pause = false;
-                        canvas.getGame().resumeSound();
-                        canvas.getGame().timer.setPlay(true);
+                        gameCanvas.getInput().pause = false;
+                        gameCanvas.getGame().resumeSound();
+                        gameCanvas.getGame().timer.setPlay(true);
                     }
-                    canvas.getGame().setPause(false);
+                    gameCanvas.getGame().setPause(false);
                     pauseGame.setFinalSelected(-1);
                 } else {
                     menuSound.stop();
-                    canvas.update();
-                    canvas.render();
-                    if (canvas.returnMenu()) { //khi win or loose se return menu chinh
+                    gameCanvas.update();
+                    gameCanvas.render();
+                    if (gameCanvas.returnMenu()) { //khi win or loose se return menu chinh
                         showMenu = true;
-                        canvas.setReturnMenu(false);
+                        gameCanvas.setReturnMenu(false);
                     }
                 }
             }
@@ -103,44 +107,44 @@ public class BomberManGame extends Application {
     }
 
     private void initGame() {
-        // Tao Canvas
-        canvas = new GameCanvas(GameSprite.SCALED_SIZE * WIDTH, GameSprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
+        // Create Canvas
+        gameCanvas = new GameCanvas(GameSprite.SCALED_SIZE * WIDTH, GameSprite.SCALED_SIZE * HEIGHT);
+        gc = gameCanvas.getGraphicsContext2D();
 
-        // Tao root container
+        // Create RootContainer
         root = new Group();
-        root.getChildren().add(canvas);
+        root.getChildren().add(gameCanvas);
 
-        // Tao scene
+        // Create scene
         Scene scene = new Scene(root);
 
-        // Them scene vao stage
-        window.setScene(scene);
-        window.setTitle(GameCanvas.TITTLE);
-        window.setResizable(false);
-        window.show();
+        // Add scene in stage
+        windowStage.setScene(scene);
+        windowStage.setTitle(GameCanvas.TITTLE);
+        windowStage.setResizable(false);
+        windowStage.show();
 
         //init menu game
-        menuGame = new MenuGame(canvas.getInput());
-        pauseGame = new PauseGame(canvas.getInput());
-        tutorialGame = new GameTutorial(canvas.getInput());
+        menuGame = new MenuGame(gameCanvas.getInput());
+        pauseGame = new PauseGame(gameCanvas.getInput());
+        gameTutorial = new GameTutorial(gameCanvas.getInput());
     }
 
     private void handleSelection() {
         //handle selections in menu
         if (menuGame.isQuit()) {
             menuSound.stop();
-            window.close();
+            windowStage.close();
         } else if (menuGame.isStartGame()) {
             //create new map level 1
-            canvas.getGame().createNewGame();
+            gameCanvas.getGame().createNewGame();
 
             mute = menuGame.isMute();
             menuGame.setStartGame(false);
             showMenu = false;
-            canvas.setTransferLevel(true);
-            if (canvas.getInput().pause == true) { // truong hop an 'p' trong menu
-                canvas.getInput().pause = false;
+            gameCanvas.setTransferLevel(true);
+            if (gameCanvas.getInput().pause == true) { // truong hop an 'p' trong menu
+                gameCanvas.getInput().pause = false;
             }
         } else if (menuGame.isShowTutorial()) {
             showTutorial = true;

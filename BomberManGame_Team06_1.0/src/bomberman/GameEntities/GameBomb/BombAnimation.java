@@ -3,11 +3,11 @@ package bomberman.GameEntities.GameBomb;
 import bomberman.GameEntities.GameAnimatedGameEntity;
 import bomberman.GameSprite.GameSprite;
 
-public class Flame extends GameAnimatedGameEntity {
+public class BombAnimation extends GameAnimatedGameEntity {
     private int direct; // 0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 CENTER
     private boolean last = false;
 
-    public Flame(int xUnit, int yUnit, int direct, boolean last) {
+    public BombAnimation(int xUnit, int yUnit, int direct, boolean last) {
         super(xUnit, yUnit, null);
         this.direct = direct;
         this.last = last;

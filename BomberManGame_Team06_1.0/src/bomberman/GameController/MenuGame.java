@@ -14,12 +14,12 @@ public class MenuGame {
     private boolean quit = false;
     private boolean showTutorial = false;
 
-    private KeyboardInput keyboard;
+    private KeyboardInput keyboardInput;
     private int Selecting = 0;
     private final int[] CoodinateYOfPointer = {200, 250, 300, 350};
 
-    public MenuGame(KeyboardInput keyboard) {
-        this.keyboard = keyboard;
+    public MenuGame(KeyboardInput keyboardInput) {
+        this.keyboardInput = keyboardInput;
     }
 
     public void showMenuGame(GraphicsContext gc) {
@@ -53,15 +53,15 @@ public class MenuGame {
     }
 
     public void update() {
-        if (!keyboard.release && keyboard.down && Selecting < 3) {
+        if (!keyboardInput.release && keyboardInput.down && Selecting < 3) {
             Selecting++;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        else if (!keyboard.release && keyboard.up && Selecting > 0) {
+        else if (!keyboardInput.release && keyboardInput.up && Selecting > 0) {
             Selecting--;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        if ((keyboard.space || keyboard.enter) && !keyboard.release) {
+        if ((keyboardInput.space || keyboardInput.enter) && !keyboardInput.release) {
             switch (Selecting) {
                 case 0:
                     startGame = true;
@@ -76,7 +76,7 @@ public class MenuGame {
                     quit = true;
                     break;
             }
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
     }
 

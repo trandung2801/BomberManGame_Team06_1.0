@@ -6,7 +6,7 @@ import bomberman.GameAi.AI;
 import bomberman.GameEntities.GameAnimatedGameEntity;
 import bomberman.GameEntities.GameEntity;
 import bomberman.GameEntities.GameBomb.Bomb;
-import bomberman.GameEntities.GameBomb.Flame;
+import bomberman.GameEntities.GameBomb.BombAnimation;
 import bomberman.GameEntities.GameCharacter.Bomber;
 import bomberman.GameEntities.GameObject.*;
 import bomberman.GameGraphics.KeyboardInput;
@@ -39,7 +39,7 @@ public abstract class Monster extends GameAnimatedGameEntity {
     public boolean canMove(int x, int y) {
         int xUnit = (int) x / GameSprite.SCALED_SIZE;
         int yUnit = (int) y / GameSprite.SCALED_SIZE;
-        GameEntity e = BomberManGame.canvas.getEntityInCoodinate(xUnit, yUnit);
+        GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(xUnit, yUnit);
         if (this instanceof Kondoria && e instanceof Brick) {
         	return true;
         }
@@ -94,7 +94,7 @@ public abstract class Monster extends GameAnimatedGameEntity {
         int x = getXUnit();
         int y = getYUnit();
         //enemy gap bat ky item auto se tang speed
-        GameEntity e = BomberManGame.canvas.getEntityInCoodinate(x, y);
+        GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(x, y);
         if (e instanceof Item) {
 //            if (!(this instanceof Dragon)) {
 //                setVelocity(velocity + 1);
@@ -103,8 +103,8 @@ public abstract class Monster extends GameAnimatedGameEntity {
         }
         List<Bomb> bombList = bomber.getBombList();
         for (Bomb b : bombList) {
-            List<Flame> fl = b.getFlameList();
-            for (Flame f : fl) {
+            List<BombAnimation> fl = b.getBombAnimationList();
+            for (BombAnimation f : fl) {
                 if (f.getXUnit() == x && f.getYUnit() == y) {
                     setAlive(false);
                     break;
