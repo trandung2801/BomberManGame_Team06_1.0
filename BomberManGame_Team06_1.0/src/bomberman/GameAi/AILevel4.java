@@ -81,7 +81,7 @@ public class AILevel4 extends AI {
     }
 
     private boolean findBomber() { //use breadth first search (BFS)
-        bfsMatrix matrix = new bfsMatrix(m*n+2);
+        BFS_Algorithm matrix = new BFS_Algorithm(m*n+2);
         List<Integer> lst = matrix.findMinimunMove(board);
         if (lst == null) {
             return false;

@@ -2,12 +2,12 @@ package bomberman.GameAi;
 
 import java.util.*;
 
-public class bfsMatrix {
+public class BFS_Algorithm {
     private int V; // No. of vertices
     private LinkedList<Integer> adj[]; //Adjacency Lists
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	bfsMatrix(int v) {
+    BFS_Algorithm(int v) {
         V = v;
         adj = new LinkedList[v];
         for (int i = 0; i < v; ++i)
@@ -26,7 +26,7 @@ public class bfsMatrix {
 
         int m = matrix.length;
         int n = matrix[0].length;
-        bfsMatrix bfs = new bfsMatrix(V);
+        BFS_Algorithm bfs = new BFS_Algorithm(V);
 
         int k = 1;
         for (int i = 0; i < m; i++) {
@@ -56,7 +56,7 @@ public class bfsMatrix {
         return bfs(s, d, bfs);
     }
 
-    List<Integer> bfs(int s, int d, bfsMatrix matrix) {
+    List<Integer> bfs(int s, int d, BFS_Algorithm matrix) {
         if (s == d) {
             return null;
         }

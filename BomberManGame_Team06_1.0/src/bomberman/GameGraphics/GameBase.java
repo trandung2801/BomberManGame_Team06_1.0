@@ -22,8 +22,8 @@ import javafx.scene.image.Image;
 
 
 public class GameBase {
-    public String[] paths = {"res/GameMap/Level1.txt", "res/GameMap/Level2.txt", "res/GameMap/Level3.txt",
-    		"res/GameMap/Level4.txt", "res/GameMap/Level5.txt", "res/GameMap/Level6.txt", "res/GameMap/Level7.txt"};
+    public String[] paths = {"res/GameMap/GameMapLv1.txt", "res/GameMap/GameMapLv2.txt", "res/GameMap/GameMapLv3.txt",
+    		"res/GameMap/GameMapLv4.txt", "res/GameMap/GameMapLv5.txt", "res/GameMap/GameMapLv6.txt", "res/GameMap/GameMapLv7.txt"};
     public int WIDTH, HEIGHT;
     public boolean pause = false;
     private KeyboardInput keyboardInput;

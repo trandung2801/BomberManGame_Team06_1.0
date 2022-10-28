@@ -16,7 +16,7 @@ public class MenuGame {
 
     private KeyboardInput keyboardInput;
     private int Selecting = 0;
-    private final int[] CoodinateYOfPointer = {270, 333, 390, 445};
+    private final int[] CoodinateYOfPointer = {295, 355, 413, 470};
 
     public MenuGame(KeyboardInput keyboardInput) {
         this.keyboardInput = keyboardInput;
@@ -27,14 +27,14 @@ public class MenuGame {
             FileInputStream file = new FileInputStream("res/Controller/Background_MenuGame.png");
             Image Background_MenuGame = new Image(file);
 
-            FileInputStream Pointer = new FileInputStream("res/Controller/bombPointer.png");
+            FileInputStream Pointer = new FileInputStream("res/Controller/Game_Pointer.png");
             Image pointer = new Image(Pointer);
 
             gc.setFill(Color.WHITE);
             gc.setFont(new Font(35));
             gc.clearRect(0, 0, 1024, 576);
             gc.drawImage(Background_MenuGame, 0, 0);
-            gc.drawImage(pointer, 400, CoodinateYOfPointer[Selecting]);
+            gc.drawImage(pointer, 370, CoodinateYOfPointer[Selecting]);
 
             gc.setFont(new Font("", 25));
             gc.fillText("Play Game", 460, 320);
