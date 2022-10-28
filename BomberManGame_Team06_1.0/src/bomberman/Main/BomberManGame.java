@@ -17,8 +17,8 @@ import bomberman.GameSound.GameSound;
 public class BomberManGame extends Application {
 
     //Game console
-    public static final int WIDTH = 31;
-    public static final int HEIGHT = 14;
+    public static final int WIDTH = 32;
+    public static final int HEIGHT = 18;
 
     //Game contructor
     public Group root;

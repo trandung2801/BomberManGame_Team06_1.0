@@ -15,14 +15,18 @@ import bomberman.GameEntities.GameObject.*;
 import bomberman.GameSound.GameSound;
 import bomberman.GameTimers.GameTimers;
 
+import java.awt.*;
+import java.io.FileInputStream;
 import java.util.List;
+import javafx.scene.image.Image;
 
 
 public class GameBase {
-    public String[] paths = {"res/levels/Level1.txt", "res/levels/Level2.txt", "res/levels/Level3.txt",
-    		"res/levels/Level4.txt", "res/levels/Level5.txt", "res/levels/Level6.txt", "res/levels/Level7.txt"};
+    public String[] paths = {"res/GameMap/Level1.txt", "res/GameMap/Level2.txt", "res/GameMap/Level3.txt",
+    		"res/GameMap/Level4.txt", "res/GameMap/Level5.txt", "res/GameMap/Level6.txt", "res/GameMap/Level7.txt"};
     public int WIDTH, HEIGHT;
     public boolean pause = false;
+    private KeyboardInput keyboardInput;
 
     
     //list to render in canvas
@@ -281,25 +285,25 @@ public class GameBase {
 
     public void renderInfoOfCurrentLevel(GraphicsContext gc) {
         gc.setFill(Color.BLACK);
-        gc.fillRect(0, 416, 992, 448);
+        gc.fillRect(0, 0, 1024, 576);
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("", 15));
-        gc.fillText("Time left: " + formatTime(timer.getInterval()), 10, 440);
-        gc.fillText("Level: " + currentLevel, 200, 440);
-        gc.fillText("Lives: " + BomberManGame.lives, 300, 440);
-        gc.fillText("Scores: " + BomberManGame.scores, 400, 440);
+        gc.fillText("Time left: " + formatTime(timer.getInterval()), 10, 24);
+        gc.fillText("Level: " + currentLevel, 200, 24);
+        gc.fillText("Lives: " + BomberManGame.lives, 300, 24);
+        gc.fillText("Scores: " + BomberManGame.scores, 400, 24);
 
         if (bomberman.canPassFlame) {
 
             if (bomberman.timeToStopFlame-- > 0 && bomberman.timeToStopFlame / 37 > 0) {
-                gc.fillText("Pass Flame in: " + formatTime(bomberman.timeToStopFlame / 37), 700, 440);
+                gc.fillText("Pass Flame in: " + formatTime(bomberman.timeToStopFlame / 37), 700, 24);
             } else {
                 bomberman.canPassFlame = false;
             }
         }
         if (bomberman.canPassBom) {
             if (bomberman.timeToStopBomb-- > 0 && bomberman.timeToStopBomb / 37 > 0) {
-                gc.fillText("Pass Bomb in: " + formatTime(bomberman.timeToStopBomb/37), 500, 440);
+                gc.fillText("Pass Bomb in: " + formatTime(bomberman.timeToStopBomb/37), 500, 24);
             } else {
                 bomberman.canPassBom = false;
             }
@@ -317,31 +321,56 @@ public class GameBase {
     }
 
     public void renderTransferLevelScreen(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, 992, 448);
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font(60));
-        gc.fillText("Level: " + currentLevel, 400, 250);
+        try{
+            FileInputStream fileInputStream = new FileInputStream("res/Controller/Capture.png");
+            Image Capture = new Image(fileInputStream);
+
+            gc.setFill(Color.BLACK);
+            gc.fillRect(0, 0, 1024, 576);
+            gc.drawImage(Capture, 0, 0);
+            gc.setFill(Color.WHITE);
+            gc.setFont(new Font(60));
+            gc.fillText("Level: " + currentLevel, 400, 250);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void renderGameOverScreen(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, 992, 448);
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font(60));
-        gc.fillText("You Lose!\nGame Over :(", 350, 200);
-        gc.setFill(Color.ORANGE);
-        gc.fillText("Your score: " + BomberManGame.scores, 350, 350);
+        try{
+            FileInputStream fileInputStream = new FileInputStream("res/Controller/Capture.png");
+            Image Capture = new Image(fileInputStream);
+
+            gc.setFill(Color.BLACK);
+            gc.fillRect(0, 0, 1024, 576);
+            gc.drawImage(Capture, 0, 0);
+            gc.setFill(Color.WHITE);
+            gc.setFont(new Font(60));
+            gc.fillText("You Lose!\nGame Over", 350, 200);
+            gc.setFill(Color.ORANGE);
+            gc.fillText("Your score: " + BomberManGame.scores, 350, 350);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void renderVictoryScreen(GraphicsContext gc) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, 992, 448);
-        gc.setFill(Color.WHITE);
-        gc.setFont(new Font(60));
-        gc.fillText("You win!\nCongrats!! :)", 350, 200);
-        gc.setFill(Color.ORANGE);
-        gc.fillText("Your score: " + BomberManGame.scores, 350, 350);
+        try{
+            FileInputStream fileInputStream = new FileInputStream("res/Controller/Capture.png");
+            Image Capture = new Image(fileInputStream);
+
+            gc.setFill(Color.BLACK);
+            gc.fillRect(0, 0, 1024, 576);
+            gc.drawImage(Capture, 0, 0);
+            gc.setFill(Color.WHITE);
+            gc.setFont(new Font(60));
+            gc.fillText("You win!\nCongrats!!!", 1024, 576);
+            gc.setFill(Color.ORANGE);
+            gc.fillText("Your score: " + BomberManGame.scores, 350, 350);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setPause(boolean pause) {
@@ -406,5 +435,8 @@ public class GameBase {
         this.returnMainMenu = returnMainMenu;
     }
 
+    public GameBase(KeyboardInput keyboardInput) {
+        this.keyboardInput = keyboardInput;
+    }
 }
 

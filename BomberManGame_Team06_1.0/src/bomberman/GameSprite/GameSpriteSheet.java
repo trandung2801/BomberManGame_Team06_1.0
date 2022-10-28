@@ -16,9 +16,9 @@ public class GameSpriteSheet {
 	public int[] pixels;
 	public BufferedImage image;
 
-	public static GameSpriteSheet tiles = new GameSpriteSheet("/textures/classic.png", 256);
-	public static GameSpriteSheet dragon = new GameSpriteSheet("/textures/dragon.png", 64);
-	public static GameSpriteSheet tiles1 = new GameSpriteSheet("/textures/TilesMap.png", 96);
+	public static GameSpriteSheet tiles = new GameSpriteSheet("/Controller/classic.png", 256);
+	public static GameSpriteSheet dragon = new GameSpriteSheet("/Controller/dragon.png", 64);
+	public static GameSpriteSheet tiles1 = new GameSpriteSheet("/Controller/TilesMap.png", 96);
 	public GameSpriteSheet(String path, int size) {
 		this.path = path;
 		SIZE = size;
