@@ -1,4 +1,5 @@
 # BomberManGame_Team06_1.0
+## Video Demo [Link](https://drive.google.com/file/d/1uDTfsIm_gDg73SSgCmqCaCKMARwt9ZSs/view?usp=share_link)
 ![Tutorial](https://user-images.githubusercontent.com/81580234/198694556-f693c04e-1888-4c11-8492-91b24c6ff902.png)
 - ![](res/sprites/player_down.png) *Bomber* là nhân vật chính của trò chơi. Bomber có thể di chuyển theo 4 hướng trái/phải/lên/xuống theo sự điều khiển của người chơi. 
 - ![](res/sprites/balloom_left1.png) *Enemy* là các đối tượng mà Bomber phải tiêu diệt hết để có thể qua Level. Enemy có thể di chuyển ngẫu nhiên hoặc tự đuổi theo Bomber tùy theo loại Enemy. Các loại Enemy sẽ được mô tả cụ thể ở phần dưới.
