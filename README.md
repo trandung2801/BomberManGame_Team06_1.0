@@ -1,20 +1,5 @@
 # BomberManGame_Team06_1.0
 ## Video Demo [Link](https://drive.google.com/file/d/1uDTfsIm_gDg73SSgCmqCaCKMARwt9ZSs/view?usp=share_link)
-
-## Hướng dẫn cài đặt game
-- Sau khi clone repo về hãy làm theo hướng dẫn sau đây
-![Ảnh chụp màn hình (53)](https://user-images.githubusercontent.com/98462569/198703562-a6b41f3b-3666-4ef1-b5e4-d40dbc7b7df8.png)
-- Chọn file và chọn close project
-![Ảnh chụp màn hình (54)](https://user-images.githubusercontent.com/98462569/198703668-da1d828e-b1ff-4017-ba5b-b45ff312c0f0.png)
-- Chọn open bên góc phải màn hình
-![Ảnh chụp màn hình (55)](https://user-images.githubusercontent.com/98462569/198703842-d1643466-9d5b-4b11-aaf6-bcc2c7760620.png)
-- Nhấn đúp vào thư mục vừa tải repo về
-![Ảnh chụp màn hình (56)](https://user-images.githubusercontent.com/98462569/198703957-4a7d9509-6ec5-42c3-8bef-a91c5215972b.png)
-- Chọn vào BomberManGame_Team06_1.0 và chọn OK
-![Ảnh chụp màn hình (57)](https://user-images.githubusercontent.com/98462569/198704126-ba5c38e5-4001-43fc-ada7-41d0d72a8364.png)
-- Hảy chắc chắn rằng bạn đang dùng JDK 1.8 và language level 8
-![Ảnh chụp màn hình (58)](https://user-images.githubusercontent.com/98462569/198704248-c2c444eb-53ee-4898-bce0-e2bea38011bd.png)
-
 ## Về trò chơi
 
 
@@ -55,3 +40,17 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 * Trần Anh Dũng
 * Nguyễn Văn Thành
 * Hoàng Hải Long
+## Hướng dẫn cài đặt game
+- Sau khi clone repo về hãy làm theo hướng dẫn sau đây
+![Ảnh chụp màn hình (53)](https://user-images.githubusercontent.com/98462569/198703562-a6b41f3b-3666-4ef1-b5e4-d40dbc7b7df8.png)
+- Chọn file và chọn close project
+![Ảnh chụp màn hình (54)](https://user-images.githubusercontent.com/98462569/198703668-da1d828e-b1ff-4017-ba5b-b45ff312c0f0.png)
+- Chọn open bên góc phải màn hình
+![Ảnh chụp màn hình (55)](https://user-images.githubusercontent.com/98462569/198703842-d1643466-9d5b-4b11-aaf6-bcc2c7760620.png)
+- Nhấn đúp vào thư mục vừa tải repo về
+![Ảnh chụp màn hình (56)](https://user-images.githubusercontent.com/98462569/198703957-4a7d9509-6ec5-42c3-8bef-a91c5215972b.png)
+- Chọn vào BomberManGame_Team06_1.0 và chọn OK
+![Ảnh chụp màn hình (57)](https://user-images.githubusercontent.com/98462569/198704126-ba5c38e5-4001-43fc-ada7-41d0d72a8364.png)
+- Hảy chắc chắn rằng bạn đang dùng JDK 1.8 và language level 8
+![Ảnh chụp màn hình (58)](https://user-images.githubusercontent.com/98462569/198704248-c2c444eb-53ee-4898-bce0-e2bea38011bd.png)
+
