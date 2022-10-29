@@ -2,76 +2,90 @@ package bomberman.GameController;
 
 import bomberman.GameGraphics.KeyboardInput;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import bomberman.Main.BomberManGame;
 
+import java.io.FileInputStream;
+
 public class PauseGame {
-    private KeyboardInput keyboard;
+    private KeyboardInput keyboardInput;
     private int selecting;
 
     public int finalSelected;
 
     public PauseGame(KeyboardInput kb) {
-        keyboard = kb;
+        keyboardInput = kb;
         selecting = 0;
         finalSelected = -1;
     }
 
     public void showPauseGame(GraphicsContext gc) {
-        String sound = BomberManGame.mute ? "off" : "on";
-       
-        gc.setFill(Color.OLIVE);
-        gc.fillRect(0, 0, 992, 448);
-        gc.setFont(new Font(60));
-        gc.setFill(Color.WHITE);
-        switch (selecting) {
-            case 0:
-                gc.fillText("Sound: " + sound, 350, 200);
-                gc.fillText("Main menu", 350, 260);
-                gc.setFill(Color.RED);
-                gc.fillText("Resume", 350, 140);
-                break;
-            case 1:
-                gc.fillText("Resume", 350, 140);
-                gc.fillText("Main menu", 350, 260);
-                gc.setFill(Color.RED);
-                gc.fillText("Sound: " + sound, 350, 200);
-                break;
-            case 2:
-                gc.fillText("Resume", 350, 140);
-                gc.fillText("Sound: " + sound, 350, 200);
-                gc.setFill(Color.RED);
-                gc.fillText("Main menu", 350, 260);
-                break;
+        try {
+            FileInputStream file = new FileInputStream("res/Controller/Background_PauseGame.png");
+            Image Background_PauseGame = new Image(file);
+
+            String sound = BomberManGame.mute ? "Off" : "On";
+
+            gc.setFill(Color.WHITE);
+            gc.fillRect(0, 0, 1024, 576);
+            gc.setFont(new Font(25));
+            gc.setFill(Color.WHITE);
+            gc.drawImage(Background_PauseGame, 0, 0);
+            switch (selecting) {
+                case 0:
+                    gc.fillText(sound, 413, 440);
+                    gc.fillText("Sound", 485, 440);
+                    gc.fillText("Option", 485, 380);;
+                    gc.setFill(Color.RED);
+                    gc.fillText("Resume", 480, 320);
+                    break;
+                case 2:
+                    gc.fillText("Resume", 480, 320);
+                    gc.fillText("Option", 485, 380);
+                    gc.setFill(Color.RED);
+                    gc.fillText(sound, 413, 440);
+                    gc.fillText("Sound", 485, 440);
+                    break;
+                case 1:
+                    gc.fillText("Resume", 480, 320);
+                    gc.fillText(sound, 413, 440);
+                    gc.fillText("Sound", 485, 440);
+                    gc.setFill(Color.RED);
+                    gc.fillText("Option", 485, 380);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     public void update() {
-        if (!keyboard.release && keyboard.down && selecting < 2) {
+        if (!keyboardInput.release && keyboardInput.down && selecting < 2) {
             selecting++;
-            keyboard.setRelease(true);
-        } else if (!keyboard.release && keyboard.up && selecting > 0) {
+            keyboardInput.setRelease(true);
+        } else if (!keyboardInput.release && keyboardInput.up && selecting > 0) {
             selecting--;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        if ((keyboard.enter || keyboard.space) && !keyboard.release) {
+        if ((keyboardInput.enter || keyboardInput.space) && !keyboardInput.release) {
             switch (selecting) {
                 case 0:
                     finalSelected = 1;
                     break;
-                case 1:
+                case 2:
                     BomberManGame.mute = !BomberManGame.mute;
 //                    BombermanGame.mute = mute;
                     break;
-                case 2:
+                case 1:
                     finalSelected = 2;
                     break;
             }
             if (selecting == 2) {
                 selecting = 0; //reset selecting
             }
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
     }
 

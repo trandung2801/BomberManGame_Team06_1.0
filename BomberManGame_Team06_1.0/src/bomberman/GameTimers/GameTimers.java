@@ -12,7 +12,7 @@ public class GameTimers {
     private int interval;
     public static int delay = 1000;
 
-    public static int period = 1000;
+    public int period = 1000;
     private int check; //kiem tra xem dem nguoc thoi gian cho doi tuong nao
     public void setTime() {
         timers = new Timer();
@@ -28,7 +28,7 @@ public class GameTimers {
 
     }
     
-    public static int fixTime = 0;
+    public  int fixTime = 0;
     public final int setInterval() {
         if (interval <= 1) {
             timers.cancel();

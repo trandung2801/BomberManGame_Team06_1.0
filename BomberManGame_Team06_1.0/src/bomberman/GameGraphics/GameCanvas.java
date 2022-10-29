@@ -6,10 +6,7 @@ import javafx.scene.input.KeyEvent;
 import bomberman.GameEntities.GameEntity;
 
 public class GameCanvas extends Canvas {
-    private GameBase game = new GameBase();
-    public GameBase getGame() {
-		return game;
-	}
+    private GameBase gameBase = new GameBase();
 
 	private KeyboardInput input = new KeyboardInput();
     public static final String TITTLE = "Bomberman";
@@ -36,33 +33,36 @@ public class GameCanvas extends Canvas {
 
 
     public void update() {
-        if (game.isGameOver()) {
+        if (gameBase.isGameOver()) {
             return;
         }
-        game.update();
+        gameBase.update();
     }
 
     public void render() {
-        game.render(this);
+        gameBase.render(this);
     }
 
     public KeyboardInput getInput() {
         return input;
     }
+    public GameBase getGame() {
+        return gameBase;
+    }
 
     public GameEntity getEntityInCoodinate(int x, int y) {
-        return game.getEntityOnCoodinate(x, y);
+        return gameBase.getEntityOnCoodinate(x, y);
     }
 
     public void setTransferLevel(boolean isTransfer) {
-        game.setTransferLevel(isTransfer);
+        gameBase.setTransferLevel(isTransfer);
     }
 
     public boolean returnMenu() {
-        return game.isReturnMainMenu();
+        return gameBase.isReturnMainMenu();
     }
 
     public void setReturnMenu(boolean returnMenu) {
-        game.setReturnMainMenu(returnMenu);
+        gameBase.setReturnMainMenu(returnMenu);
     }
 }

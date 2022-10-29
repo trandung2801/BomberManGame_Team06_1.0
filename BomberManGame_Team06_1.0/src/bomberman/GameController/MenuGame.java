@@ -14,37 +14,40 @@ public class MenuGame {
     private boolean quit = false;
     private boolean showTutorial = false;
 
-    private KeyboardInput keyboard;
+    private KeyboardInput keyboardInput;
     private int Selecting = 0;
-    private final int[] CoodinateYOfPointer = {200, 250, 300, 350};
+    private final int[] CoodinateYOfPointer = {295, 355, 413, 470};
 
-    public MenuGame(KeyboardInput keyboard) {
-        this.keyboard = keyboard;
+    public MenuGame(KeyboardInput keyboardInput) {
+        this.keyboardInput = keyboardInput;
     }
 
     public void showMenuGame(GraphicsContext gc) {
         try {
-            FileInputStream file = new FileInputStream("res/textures/bgrGame.png");
-            Image bgrImg = new Image(file);
+            FileInputStream file = new FileInputStream("res/Controller/Background_MenuGame.png");
+            Image Background_MenuGame = new Image(file);
 
-            FileInputStream Pointer = new FileInputStream("res/textures/bombPointer.png");
+            FileInputStream Pointer = new FileInputStream("res/Controller/Game_Pointer.png");
             Image pointer = new Image(Pointer);
 
-            gc.setFill(Color.BLACK);
-            gc.clearRect(0, 0, 992, 448);
-            gc.drawImage(bgrImg, 0, 0);
-            gc.drawImage(pointer, 350, CoodinateYOfPointer[Selecting]);
+            gc.setFill(Color.WHITE);
+            gc.setFont(new Font(35));
+            gc.clearRect(0, 0, 1024, 576);
+            gc.drawImage(Background_MenuGame, 0, 0);
+            gc.drawImage(pointer, 370, CoodinateYOfPointer[Selecting]);
 
-            gc.setFont(new Font("", 40));
-            gc.fillText("New game", 400, 250);
+            gc.setFont(new Font("", 25));
+            gc.fillText("Play Game", 460, 320);
 
-            String sound = BomberManGame.mute ? "off" : "on";;
+            String sound = BomberManGame.mute ? "Off" : "On";;
 
-            gc.fillText("Sound: " + sound, 400, 300);
+            gc.fillText(sound, 413, 383);
 
-            gc.fillText("Tutorial", 400, 350);
+            gc.fillText("Sound", 485, 383);
 
-            gc.fillText("Quit", 400, 400);
+            gc.fillText("Tutorial", 480, 440);
+
+            gc.fillText("Quit", 495, 495);
 
             //TODO: co the cai tien cho them high score
         } catch (Exception e) {
@@ -53,15 +56,15 @@ public class MenuGame {
     }
 
     public void update() {
-        if (!keyboard.release && keyboard.down && Selecting < 3) {
+        if (!keyboardInput.release && keyboardInput.down && Selecting < 3) {
             Selecting++;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        else if (!keyboard.release && keyboard.up && Selecting > 0) {
+        else if (!keyboardInput.release && keyboardInput.up && Selecting > 0) {
             Selecting--;
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
-        if ((keyboard.space || keyboard.enter) && !keyboard.release) {
+        if ((keyboardInput.space || keyboardInput.enter) && !keyboardInput.release) {
             switch (Selecting) {
                 case 0:
                     startGame = true;
@@ -76,7 +79,7 @@ public class MenuGame {
                     quit = true;
                     break;
             }
-            keyboard.setRelease(true);
+            keyboardInput.setRelease(true);
         }
     }
 

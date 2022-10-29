@@ -33,7 +33,7 @@ public class AILevel4 extends AI {
     private void init(int[][] board) { // 0 la ko di dc, 1 la enemy, 2 la bomber, 3 la co the di dc
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                GameEntity tmp = BomberManGame.canvas.getEntityInCoodinate(j, i);
+                GameEntity tmp = BomberManGame.gameCanvas.getEntityInCoodinate(j, i);
                 if (tmp instanceof Wall || tmp instanceof Brick || tmp instanceof Portal || tmp instanceof Bomb) {
                     board[i][j] = 0;
                 } else {
@@ -81,7 +81,7 @@ public class AILevel4 extends AI {
     }
 
     private boolean findBomber() { //use breadth first search (BFS)
-        bfsMatrix matrix = new bfsMatrix(m*n+2);
+        BFS_Algorithm matrix = new BFS_Algorithm(m*n+2);
         List<Integer> lst = matrix.findMinimunMove(board);
         if (lst == null) {
             return false;
@@ -122,7 +122,7 @@ public class AILevel4 extends AI {
                     x += 1;
                     break;
             }
-            GameEntity e = BomberManGame.canvas.getEntityInCoodinate(x, y);
+            GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(x, y);
             if (e instanceof Wall || e instanceof Brick || e instanceof Portal || e instanceof Bomb) {
                 continue;
             } else {

@@ -14,27 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameMap {
-    private int w, h;
+    private int width, height;
 
     private List<GameEntity> collidableEntities;
     private List<Grass> grassList;
-    private List<Monster> enemyList;
+    private List<Monster> monsterList;
     private Bomber bomber;
 
     public void createMapLevel(String path, int level) {
         collidableEntities = new ArrayList<>();
         grassList = new ArrayList<>();
-        enemyList = new ArrayList<>();
+        monsterList = new ArrayList<>();
         try {
             FileReader in = new FileReader(path);
             BufferedReader br = new BufferedReader(in);
 
             String infoOfMap;
             infoOfMap = br.readLine();
-            h = Integer.parseInt(infoOfMap.substring(2, 4));
-            w = Integer.parseInt(infoOfMap.substring(5));
+            height = Integer.parseInt(infoOfMap.substring(2, 4));
+            width = Integer.parseInt(infoOfMap.substring(5));
 
-            for (int i = 0; i < h; i++) {
+            for (int i = 0; i < height; i++) {
                 String temp = br.readLine();
                 GameEntity object;
                 for (int j = 0; j < temp.length(); j++) {
@@ -60,27 +60,27 @@ public class GameMap {
                             break;
                         case '1':
                             object = new Balloon(j, i);
-                            enemyList.add((Balloon) object);
+                            monsterList.add((Balloon) object);
                             break;
                         case '2':
                             object = new Oneal(j, i);
-                            enemyList.add((Oneal) object);
+                            monsterList.add((Oneal) object);
                             break;
                         case '3':
                             object = new Doll(j, i);
-                            enemyList.add((Doll) object);
+                            monsterList.add((Doll) object);
                             break;
                         case '4':
                             object = new Minvo(j, i);
-                            enemyList.add((Minvo) object);
+                            monsterList.add((Minvo) object);
                             break;
                         case '5':
                             object = new Kondoria(j, i);
-                            enemyList.add((Kondoria) object);
+                            monsterList.add((Kondoria) object);
                             break;
                         case '6':
                             object = new Dragon(j, i);
-                            enemyList.add((Dragon) object);
+                            monsterList.add((Dragon) object);
                             break;
                         case 'b':
                             object = new Brick(j, i, level);
@@ -167,16 +167,16 @@ public class GameMap {
     }
 
 
-    public List<Monster> getEnemyList() {
-        return enemyList;
+    public List<Monster> getMonsterList() {
+        return monsterList;
     }
 
-    public int getW() {
-        return w;
+    public int getWidth() {
+        return width;
     }
 
-    public int getH() {
-        return h;
+    public int getHeight() {
+        return height;
     }
 
 

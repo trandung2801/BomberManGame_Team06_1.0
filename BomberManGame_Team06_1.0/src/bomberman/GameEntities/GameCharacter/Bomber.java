@@ -80,7 +80,7 @@ public class Bomber extends Character {
 
         ifCollisionWithFlameOrEnemyOrItem();
 
-        input = BomberManGame.canvas.getInput();
+        input = BomberManGame.gameCanvas.getInput();
 
         if (isStartDie()) {
             if (timeShowDeath-- > 0) {
@@ -94,7 +94,7 @@ public class Bomber extends Character {
 
             if (input.space) {
                 if (bombList.size() < maxBom) {
-                    GameEntity e = BomberManGame.canvas.getEntityInCoodinate(getXUnit(), getYUnit());
+                    GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(getXUnit(), getYUnit());
                     if (e == null) {
                         bombList.add(new Bomb(getXUnit(), getYUnit(), frameLen, this));
 
@@ -168,7 +168,7 @@ public class Bomber extends Character {
                 bombList.remove(b);
                 break;
             } else {
-                for (Flame fl : b.getFlameList()) {
+                for (BombAnimation fl : b.getBombAnimationList()) {
                     fl.update();
                 }
             }
@@ -219,7 +219,7 @@ public class Bomber extends Character {
         for (int i = 0; i < 4; i++) { //check collision for 4 corners
             int newX = (getX() + AddToXToCheckCollision[i]) / GameSprite.SCALED_SIZE;
             int newY = (getY() + AddToYToCheckCollision[i]) / GameSprite.SCALED_SIZE;
-            GameEntity e = BomberManGame.canvas.getEntityInCoodinate(newX, newY);
+            GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(newX, newY);
 
             if (e instanceof Wall || (e instanceof Brick && canPassBrick == false)) {
                 return false;
@@ -255,8 +255,8 @@ public class Bomber extends Character {
         int x = getXUnit();
         int y = getYUnit();
         for (Bomb b : bombList) {
-            List<Flame> fl = b.getFlameList();
-            for (Flame f : fl) {
+            List<BombAnimation> fl = b.getBombAnimationList();
+            for (BombAnimation f : fl) {
                 if (f.getXUnit() == x && f.getYUnit() == y) {
                     if (!canPassFlame && !startDie) {
                         setStartDie(true);
@@ -266,7 +266,7 @@ public class Bomber extends Character {
                 }
             }
         }
-        GameEntity e = BomberManGame.canvas.getEntityInCoodinate(x, y);
+        GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(x, y);
         if (e instanceof Monster && !startDie) {
             setStartDie(true);
             new GameSound(GameSound.soundDead).play();

@@ -8,17 +8,17 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class GameSound {
-	
-	public static String soundGame = "res/sounds/inLevel.wav";
-	public static String soundTransferLevel = "res/sounds/levelComplete.wav" ;
-	public static String soundEatingItem = "res/sounds/eatingItem.wav";
-	public static String soundMenu = "res/sounds/Title.wav";
-	public static String soundExplosion = "res/sounds/explosion.wav";
-	public static String soundDead = "res/sounds/LifeLost.wav";
-	public static String soundLoseGame = "res/sounds/gameOver.wav";
-	public static String soundWinGame = "res/sounds/Victory.wav";
-	public static String soundMoving = "res/sounds/moving.wav";
-	public static String soundPlaceBomb = "res/sounds/placeBomb.wav";
+	// path sound
+	public static String soundGame = "res/Sounds/inLevel.wav";
+	public static String soundTransferLevel = "res/Sounds/levelComplete.wav" ;
+	public static String soundEatingItem = "res/Sounds/eatingItem.wav";
+	public static String soundMenu = "res/Sounds/Title.wav";
+	public static String soundExplosion = "res/Sounds/explosion.wav";
+	public static String soundDead = "res/Sounds/LifeLost.wav";
+	public static String soundLoseGame = "res/Sounds/gameOver.wav";
+	public static String soundWinGame = "res/Sounds/Victory.wav";
+	public static String soundMoving = "res/Sounds/moving.wav";
+	public static String soundPlaceBomb = "res/Sounds/placeBomb.wav";
 	
 	long currentFrame;
 	Clip clip;

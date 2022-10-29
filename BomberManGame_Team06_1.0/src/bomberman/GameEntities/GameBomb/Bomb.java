@@ -23,7 +23,7 @@ public class Bomb extends GameAnimatedGameEntity {
     private Bomber bomber;
 
     private int flameLen = 1;
-    private List<Flame> flameList = new ArrayList<>();
+    private List<BombAnimation> bombAnimationList = new ArrayList<>();
 
     public GameSound soundExplode = new GameSound(GameSound.soundExplosion);
     public Bomb(int x, int y, int flameLen, Bomber bomber) {
@@ -63,9 +63,9 @@ public class Bomb extends GameAnimatedGameEntity {
         int x = getXUnit();
         int y = getYUnit();
 
-        flameList.add(new Flame(x, y, 4, false));// add center
+        bombAnimationList.add(new BombAnimation(x, y, 4, false));// add center
         //truong hop bomber o tren qua bom
-        GameEntity e = BomberManGame.canvas.getEntityInCoodinate(x, y);
+        GameEntity e = BomberManGame.gameCanvas.getEntityInCoodinate(x, y);
         canPassThrough(e);
         
         
@@ -74,16 +74,16 @@ public class Bomb extends GameAnimatedGameEntity {
         int il = 1;
         for (; il <= flameLen; il++) { //check tu 1 den FrameLen neu gap vat can break
             int xLeft = x - il;
-            e = BomberManGame.canvas.getEntityInCoodinate(xLeft, y);
+            e = BomberManGame.gameCanvas.getEntityInCoodinate(xLeft, y);
             if (!canPassThrough(e)) {
                 break;
             }
         }
         for (int i = 1; i < il; i++) { // them flame tu 1 den do dai frame lon nhat co the
             if (i == il - 1) {
-                flameList.add(new Flame(x - i, y, 2, true));
+                bombAnimationList.add(new BombAnimation(x - i, y, 2, true));
             } else {
-                flameList.add(new Flame(x - i, y, 2, false));
+                bombAnimationList.add(new BombAnimation(x - i, y, 2, false));
             }
         }
 
@@ -91,16 +91,16 @@ public class Bomb extends GameAnimatedGameEntity {
         int ir = 1;
         for (; ir <= flameLen; ir++) {
             int xRight = x + ir;
-            e = BomberManGame.canvas.getEntityInCoodinate(xRight, y);
+            e = BomberManGame.gameCanvas.getEntityInCoodinate(xRight, y);
             if (!canPassThrough(e)) {
                 break;
             }
         }
         for (int i = 1; i < ir; i++) {
             if (i == ir - 1) {
-                flameList.add(new Flame(x + i, y, 3, true));
+                bombAnimationList.add(new BombAnimation(x + i, y, 3, true));
             } else {
-                flameList.add(new Flame(x + i, y, 3, false));
+                bombAnimationList.add(new BombAnimation(x + i, y, 3, false));
             }
         }
 
@@ -108,16 +108,16 @@ public class Bomb extends GameAnimatedGameEntity {
         int iu = 1;
         for (; iu <= flameLen; iu++) {
             int yUp = y - iu;
-            e = BomberManGame.canvas.getEntityInCoodinate(x, yUp);
+            e = BomberManGame.gameCanvas.getEntityInCoodinate(x, yUp);
             if (!canPassThrough(e)) {
                 break;
             }
         }
         for (int i = 1; i < iu; i++) {
             if (i == iu - 1) {
-                flameList.add(new Flame(x, y - i, 0, true));
+                bombAnimationList.add(new BombAnimation(x, y - i, 0, true));
             } else {
-                flameList.add(new Flame(x, y - i, 0, false));
+                bombAnimationList.add(new BombAnimation(x, y - i, 0, false));
             }
         }
 
@@ -125,22 +125,22 @@ public class Bomb extends GameAnimatedGameEntity {
         int id = 1;
         for (; id <= flameLen; id++) {
             int yDown = y + id;
-            e = BomberManGame.canvas.getEntityInCoodinate(x, yDown);
+            e = BomberManGame.gameCanvas.getEntityInCoodinate(x, yDown);
             if (!canPassThrough(e)) {
                 break;
             }
         }
         for (int i = 1; i < id; i++) {
             if (i == id - 1) {
-                flameList.add(new Flame(x, y + i, 1, true));
+                bombAnimationList.add(new BombAnimation(x, y + i, 1, true));
             } else {
-                flameList.add(new Flame(x, y + i, 1, false));
+                bombAnimationList.add(new BombAnimation(x, y + i, 1, false));
             }
         }
     }
 
     public void frameRender(GraphicsContext gc) {
-        flameList.forEach(g -> g.render(gc));
+        bombAnimationList.forEach(g -> g.render(gc));
     }
 
     public boolean isExplored() {
@@ -178,8 +178,8 @@ public class Bomb extends GameAnimatedGameEntity {
         return true;
     }
 
-    public List<Flame> getFlameList() {
-        return flameList;
+    public List<BombAnimation> getBombAnimationList() {
+        return bombAnimationList;
     }
 
     public boolean isAllowPass() {
