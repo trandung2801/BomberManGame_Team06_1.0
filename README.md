@@ -37,10 +37,10 @@ Có nhiều loại Enemy trong Bomberman, tuy nhiên trong phiên bản này ch�
 - Khi các Flame xuất hiện, nếu có một đối tượng thuộc loại Brick/Wall nằm trên vị trí một trong các Flame thì độ dài Flame đó sẽ được giảm đi để sao cho Flame chỉ xuất hiện đến vị trí đối tượng Brick/Wall theo hướng xuất hiện. Lúc đó chỉ có đối tượng Brick/Wall bị ảnh hưởng bởi Flame, các đối tượng tiếp theo không bị ảnh hưởng. Còn nếu vật cản Flame là một đối tượng Bomb khác thì đối tượng Bomb đó cũng sẽ nổ ngay lập tức.
 
 
-##UML 
+## UML 
 ![image](https://user-images.githubusercontent.com/81580234/198875944-9ce292ed-a5a9-4c2a-a4a3-ae156044125c.png)
 
-##Slide thuyết trình
+## Slide thuyết trình
 [Bomberman06.pptx](https://github.com/trandung2801/BomberManGame_Team06_1.0/files/9895680/Bomberman06.pptx)
 
 ## Nhóm phát triển
